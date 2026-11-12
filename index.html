@@ -3,7 +3,93 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>成龙历险记</title>
+    <meta name="theme-color" content="#05070a" />
+    <title>地图 · 成龙历险记</title>
+    <link rel="icon" href="data:," />
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: #05070a;
+      }
+
+      .map-view {
+        position: relative;
+        display: grid;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        padding: 16px;
+        place-items: center;
+        isolation: isolate;
+      }
+
+      .map-view::before {
+        position: absolute;
+        z-index: -2;
+        inset: -10%;
+        content: "";
+        background: url("assets/map.png") center / cover no-repeat;
+        filter: blur(46px) brightness(0.28) saturate(0.85);
+        transform: scale(1.1);
+      }
+
+      .map-view::after {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        content: "";
+        background: radial-gradient(
+          120% 90% at 50% 45%,
+          rgba(5, 7, 10, 0) 40%,
+          rgba(5, 7, 10, 0.72) 100%
+        );
+        pointer-events: none;
+      }
+
+      .map-frame {
+        position: relative;
+        max-width: 100%;
+        max-height: 100%;
+        margin: 0;
+        overflow: hidden;
+        line-height: 0;
+        border-radius: 4px;
+        box-shadow:
+          0 30px 80px rgba(0, 0, 0, 0.65),
+          0 0 0 1px rgba(255, 255, 255, 0.07);
+      }
+
+      .map-frame img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: calc(100vw - 32px);
+        max-height: calc(100vh - 32px);
+        max-height: calc(100dvh - 32px);
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <main class="map-view" aria-label="游戏地图">
+      <figure class="map-frame">
+        <img src="assets/map.png" alt="村庄地图" draggable="false" />
+      </figure>
+    </main>
+  </body>
 </html>
